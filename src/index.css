@@ -524,6 +524,18 @@ section{padding:100px 40px;position:relative;}
   line-height: 1.2;
 }
 
+@media(max-width:768px) {
+  .pyr-wrap { padding: 0 10px; }
+  .plyr.w100, .plyr.w85, .plyr.w70, .plyr.w55, .plyr.w40 { max-width: 100%; }
+  .pbar { padding: 16px 14px; gap: 12px; border-radius: 8px; }
+  .pbar-l { gap: 10px; }
+  .picons { font-size: 16px; padding: 6px; }
+  .ptxt h4 { font-size: 12px; }
+  .ptxt p { font-size: 11px; display: none; } /* Hide subtext on mobile to save space */
+  .prev { font-size: 14px; }
+  .pcon { height: 20px; }
+}
+
 /* Connectors */
 .pcon { 
   height: 30px; 
