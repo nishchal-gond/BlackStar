@@ -170,8 +170,8 @@ const KPIDashboard: React.FC = () => {
                 </p>
               </div>
 
-              {/* Supporting KPI Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '32px' }}>
+              {/* Supporting KPI Grid - RESPONSIVE CLASS ADDED */}
+              <div className="ana-mini-grid">
                 {[
                   { label: 'Break-even Month', val: 'Month 3', sub: 'Target Met' },
                   { label: 'Net Profit Margin', val: '45%', sub: 'AED Basis' },

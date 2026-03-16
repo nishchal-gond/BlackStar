@@ -307,3 +307,8 @@
   .v-timeline-bar { display: none; }
   .v-timeline-content { flex-direction: column; gap: 40px; }
 }
+
+@media (max-width: 768px) {
+  .pillars { grid-template-columns: 1fr; }
+  .v-big { text-align: left; }
+}

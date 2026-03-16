@@ -205,6 +205,7 @@
 @media (max-width: 1200px) {
   .tech-grid { grid-template-columns: repeat(2, 1fr); }
   .tnode { min-height: auto; }
+  .flow-arrow { display: none; }
 }
 
 @media (max-width: 768px) {

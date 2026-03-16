@@ -238,34 +238,41 @@ section{padding:100px 40px;position:relative;}
 @media(max-width:768px){
   section{padding:70px 20px;}
   .nav {
-    top: 12px;
-    height: 56px;
-    min-width: calc(100% - 24px);
-    width: calc(100% - 24px);
-    border-radius: 12px;
-    padding: 0 12px 0 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    height: 60px;
+    width: 100%;
+    min-width: 100%;
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0 20px;
+    background: rgba(3, 7, 18, 0.9);
   }
   .nav-inner {
     gap: 10px;
   }
   .nav-links {
     position: fixed;
-    top: 68px;
+    top: 60px;
     left: 0;
     right: 0;
     background: rgba(3, 7, 18, 0.98);
-    border: 1px solid rgba(0, 245, 212, 0.15);
-    border-radius: 16px;
+    border-bottom: 1px solid rgba(0, 245, 212, 0.15);
+    border-radius: 0;
     flex-direction: column;
     padding: 24px 20px;
     gap: 8px;
-    transform: translateY(-20px);
+    transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     backdrop-filter: blur(20px);
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    margin: 0 12px;
+    margin: 0;
   }
   .nav-links.open {
     transform: translateY(0);
@@ -274,15 +281,18 @@ section{padding:100px 40px;position:relative;}
   }
   .nav-links a {
     width: 100%;
-    text-align: center;
-    padding: 14px;
+    text-align: left;
+    padding: 12px 16px;
+    background: transparent !important;
   }
   .nav-cta {
     margin-left: 0;
-    margin-top: 8px;
+    margin-top: 12px;
+    text-align: center !important;
   }
   .hamburger {
     display: flex;
+    margin-right: 0;
   }
 }
 
@@ -371,6 +381,30 @@ section{padding:100px 40px;position:relative;}
   border-color: rgba(0, 245, 212, 0.4);
   box-shadow: 0 15px 35px rgba(0, 245, 212, 0.15);
   background: rgba(15, 20, 40, 0.8);
+}
+
+/* Analytics Grid Layouts (Phase 12) */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.ana-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+@media(max-width: 1024px) {
+  .analytics-grid { grid-template-columns: 1fr; }
+}
+
+@media(max-width: 768px) {
+  .ana-mini-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .ct { color: var(--teal); border-color: rgba(0, 245, 212, 0.2); }
