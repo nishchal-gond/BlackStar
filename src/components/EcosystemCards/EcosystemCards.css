@@ -1,0 +1,178 @@
+.eco-sec {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%);
+  padding: 120px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial depth behind grid */
+.eco-sec::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 1000px;
+  background: radial-gradient(circle at center, rgba(0, 245, 212, 0.04), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.eco-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ecard {
+  /* Modern Glass Surface */
+  background: rgba(15, 20, 40, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Default subtle border */
+  border-radius: 16px;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, transform 0.8s ease;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(30px);
+  display: flex;
+  flex-direction: column;
+}
+
+.ecard[data-d="1"] { transition-delay: 0s, 0s, 0s; }
+.ecard[data-d="2"] { transition-delay: 0s, 0s, 0.1s; }
+.ecard[data-d="3"] { transition-delay: 0s, 0s, 0.2s; }
+
+.ecard.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dynamic Top Border Line */
+.ecard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--acc);
+  opacity: 0.5; /* Always slightly visible in modern design */
+  transition: opacity .3s;
+}
+
+/* Hover State Improvements */
+.ecard:hover, .ecard.vis:hover {
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--acc) 30%, transparent);
+  box-shadow: 0 25px 60px color-mix(in srgb, var(--acc) 15%, transparent);
+  background: rgba(20, 25, 50, 0.7);
+}
+
+.ecard:hover::before {
+  opacity: 1;
+}
+
+.eglow {
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--acc);
+  opacity: 0;
+  filter: blur(50px);
+  transition: opacity .4s;
+  pointer-events: none;
+}
+
+.ecard:hover .eglow {
+  opacity: .15;
+}
+
+.eicon {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.ecard:hover .eicon {
+  transform: scale(1.05);
+  text-shadow: 0 0 20px color-mix(in srgb, var(--acc) 50%, transparent);
+}
+
+.enum {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--acc);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  opacity: .8;
+}
+
+.ecard h3 {
+  font-family: var(--fh);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.ecard p {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .6);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1; /* Pushes tags to the bottom */
+}
+
+.etags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Tag Pill Refinement */
+.etags span {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--acc) 25%, transparent);
+  padding: 5px 12px;
+  border-radius: 8px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.ecard:hover .etags span {
+  background: color-mix(in srgb, var(--acc) 18%, transparent);
+  border-color: color-mix(in srgb, var(--acc) 40%, transparent);
+}
+
+@media (max-width: 1024px) {
+  .eco-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .eco-grid {
+    grid-template-columns: 1fr;
+  }
+  .ecard {
+    padding: 28px 24px;
+  }
+}

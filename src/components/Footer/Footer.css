@@ -1,0 +1,73 @@
+footer {
+  background: rgba(3, 7, 18, 0.95);
+  border-top: 1px solid rgba(0, 245, 212, 0.08);
+  padding: 44px 40px;
+}
+
+.foot-in {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.foot-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.foot-logo .logo-b {
+  font-family: var(--fh);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.foot-logo .logo-a {
+  font-family: var(--fm);
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: var(--teal);
+}
+
+.foot-tag {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.foot-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.foot-links a {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.foot-links a:hover {
+  color: var(--teal);
+}
+
+.foot-copy {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.3);
+}

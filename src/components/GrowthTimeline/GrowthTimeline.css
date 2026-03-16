@@ -1,0 +1,264 @@
+.timeline-sec {
+  background: var(--bg);
+  padding: 120px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial depth behind the roadmap */
+.timeline-sec::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 800px;
+  background: radial-gradient(circle at center, rgba(0, 245, 212, 0.04), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sec-hdr {
+  text-align: center;
+  margin-bottom: 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-phases {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 50px auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Glassmorphic Phase Cards */
+.tl-phase {
+  flex: 1;
+  background: rgba(15, 20, 40, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, transform 0.8s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.tl-phases.vis .tl-phase {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Entrance Delay */
+.tl-phase[data-d="1"] { transition-delay: 0s, 0s, 0s; }
+.tl-phase[data-d="2"] { transition-delay: 0s, 0s, 0.1s; }
+.tl-phase[data-d="3"] { transition-delay: 0s, 0s, 0.2s; }
+.tl-phase[data-d="4"] { transition-delay: 0s, 0s, 0.3s; }
+
+/* Interactive Hover States */
+.tl-phase.hovered {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(20, 25, 50, 0.7);
+}
+
+/* Specific glows per phase utilizing the global color classes */
+.tl-phase.hovered:has(.ct) { box-shadow: 0 20px 50px color-mix(in srgb, var(--teal) 15%, transparent); }
+.tl-phase.hovered:has(.cp) { box-shadow: 0 20px 50px color-mix(in srgb, var(--purple) 15%, transparent); }
+.tl-phase.hovered:has(.co) { box-shadow: 0 20px 50px color-mix(in srgb, var(--orange) 15%, transparent); }
+.tl-phase.hovered:has(.cg) { box-shadow: 0 20px 50px color-mix(in srgb, var(--green) 15%, transparent); }
+
+.tl-period {
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+.tl-name {
+  font-family: var(--fh);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.tl-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  flex-grow: 1; /* Pushes revenue to bottom */
+}
+
+.tl-items li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, .6);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.tl-items li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .3);
+}
+
+.tl-rev {
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tl-rev span:last-child {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* Color Classes matching btb.html reference */
+.ct { color: var(--teal); }
+.cp { color: var(--blue); } 
+.co { color: var(--orange); }
+.cg { color: #39ff14; }
+
+/* Connected Milestone Bar */
+.tl-bar-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  height: 50px; /* Container height to house the line and nodes vertically centered */
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease 0.5s; /* Fade in after cards */
+}
+
+.tl-bar-wrap.vis {
+  opacity: 1;
+}
+
+.tl-bar-bg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+}
+
+.tl-bar-fill {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--teal), var(--purple), var(--orange), var(--green));
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+  z-index: 2;
+}
+
+.tl-bar-wrap.vis .tl-bar-fill {
+  transform: scaleX(1);
+}
+
+/* Interactive Nodes */
+.tl-nodes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around; /* Distribute nodes evenly */
+  align-items: center;
+  z-index: 3;
+}
+
+.tl-node {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 2px solid; /* Color driven by class */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.tl-bar-wrap.vis .tl-node {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Node sequence entrance */
+.tl-node:nth-child(1) { transition-delay: 0.6s; }
+.tl-node:nth-child(2) { transition-delay: 0.9s; }
+.tl-node:nth-child(3) { transition-delay: 1.2s; }
+.tl-node:nth-child(4) { transition-delay: 1.5s; }
+
+/* Node Hover / Active States */
+.tl-node.active {
+  transform: scale(1.5);
+  background: currentColor; /* Fills with border color */
+}
+
+.tl-node.ct { border-color: var(--teal); color: var(--teal); }
+.tl-node.cp { border-color: var(--purple); color: var(--purple); }
+.tl-node.co { border-color: var(--orange); color: var(--orange); }
+.tl-node.cg { border-color: var(--green); color: var(--green); }
+
+.tl-node.ct.active { box-shadow: 0 0 15px var(--teal); }
+.tl-node.cp.active { box-shadow: 0 0 15px var(--purple); }
+.tl-node.co.active { box-shadow: 0 0 15px var(--orange); }
+.tl-node.cg.active { box-shadow: 0 0 15px var(--green); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .tl-phases {
+    flex-wrap: wrap;
+  }
+  .tl-phase {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .tl-phases {
+    flex-direction: column;
+  }
+  .tl-phase {
+    flex: 1 1 100%;
+  }
+  .tl-bar-wrap {
+    display: none; /* Hide horizontal bar on mobile, rely on vertical card flow */
+  }
+}

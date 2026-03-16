@@ -1,0 +1,309 @@
+.vision-sec {
+  background: var(--bg2);
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 160px; /* Extra bottom padding for the new timeline size */
+}
+
+/* Updated Subtle radial depth behind the right-aligned cards */
+.vision-glow-bg {
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  transform: translateY(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(circle at right, rgba(0, 245, 212, 0.04), transparent 70%);
+  pointer-events: none;
+}
+
+.sec-hdr {
+  text-align: center;
+  margin-bottom: 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* Give cards slightly more room */
+  gap: 80px; /* Increased gap */
+  max-width: 1200px;
+  margin: 0 auto 100px; /* More space before timeline */
+  padding: 0 40px;
+  align-items: center; /* Perfect vertical alignment */
+  position: relative;
+  z-index: 1;
+}
+
+/* Left side statement */
+.v-stmt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.v-stmt.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.v-big {
+  font-size: clamp(16px, 2vw, 22px); /* Slightly larger */
+  font-weight: 400;
+  color: rgba(255, 255, 255, .85);
+  line-height: 1.85;
+  margin-bottom: 30px;
+}
+
+.v-big em {
+  font-style: normal;
+  color: var(--teal);
+}
+
+.v-div {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(to right, var(--teal), transparent);
+  margin-bottom: 30px;
+}
+
+.v-sm {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* Right side Pillars */
+.pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px; /* Increased gap for glass cards */
+}
+
+/* Glassmorphic Pillar Cards */
+.pillar {
+  background: rgba(15, 20, 40, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 245, 212, 0.15);
+  border-radius: 14px;
+  padding: 24px 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, transform 0.8s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.pillars.vis .pillar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered entrance */
+.pillar[data-idx="0"] { transition-delay: 0s, 0s, 0.1s; }
+.pillar[data-idx="1"] { transition-delay: 0s, 0s, 0.2s; }
+.pillar[data-idx="2"] { transition-delay: 0s, 0s, 0.3s; }
+.pillar[data-idx="3"] { transition-delay: 0s, 0s, 0.4s; }
+
+/* Interactive Hover States */
+.pillar.hovered {
+  transform: translateY(-6px);
+  border-color: rgba(0, 245, 212, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 245, 212, 0.12);
+  background: rgba(20, 25, 50, 0.7);
+}
+
+.p-num {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--teal);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  opacity: .8;
+}
+
+.p-ico-wrap {
+  margin-bottom: 16px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.pillar.hovered .p-ico-wrap {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(0,245,212,0.4));
+}
+
+.p-ico {
+  font-size: 24px;
+}
+
+.pillar h4 {
+  font-family: var(--fh);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.pillar p {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+
+/* Horizontal Connected Timeline */
+.v-timeline-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.v-timeline-bar {
+  width: 100%;
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease 0.6s;
+}
+
+.v-timeline-wrapper.vis .v-timeline-bar {
+  opacity: 1;
+}
+
+.vtl-bar-bg {
+  position: absolute;
+  top: 50%;
+  left: 15%; /* Indent to align with nodes visually */
+  right: 15%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+}
+
+.vtl-bar-fill {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--teal) 0%, var(--blue) 25%, var(--purple) 50%, var(--orange) 75%, var(--gold) 100%);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+  z-index: 2;
+}
+
+.v-timeline-wrapper.vis .vtl-bar-fill {
+  transform: scaleX(1);
+}
+
+.vtl-nodes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 3;
+}
+
+.vtl-node-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.vtl-node {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 2px solid var(--teal);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.vtl-node[data-idx="0"] { border-color: var(--teal); box-shadow: 0 0 15px var(--teal); }
+.vtl-node[data-idx="1"] { border-color: var(--purple); box-shadow: 0 0 15px var(--purple); }
+.vtl-node[data-idx="2"] { border-color: var(--orange); box-shadow: 0 0 15px var(--orange); }
+
+
+.v-timeline-wrapper.vis .vtl-node {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.vtl-node[data-idx="0"] { transition-delay: 0.8s; }
+.vtl-node[data-idx="1"] { transition-delay: 1.4s; }
+.vtl-node[data-idx="2"] { transition-delay: 2.0s; }
+
+
+.v-timeline-content {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.vtl-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.v-timeline-wrapper.vis .vtl-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vtl-item[data-idx="0"] { transition-delay: 0.9s; }
+.vtl-item[data-idx="1"] { transition-delay: 1.5s; }
+.vtl-item[data-idx="2"] { transition-delay: 2.1s; }
+
+.vtl-per {
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--teal);
+  margin-bottom: 12px;
+  opacity: .9;
+}
+
+.vtl-ttl {
+  font-family: var(--fh);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.vtl-sub {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .vision-grid { grid-template-columns: 1fr; gap: 40px; }
+  .v-timeline-bar { display: none; }
+  .v-timeline-content { flex-direction: column; gap: 40px; }
+}
