@@ -229,15 +229,19 @@ section{padding:100px 40px;position:relative;}
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px) {
   .nav {
-    min-width: calc(100% - 40px);
-    width: calc(100% - 40px);
-    padding: 0 16px 0 24px;
+    width: 100%;
+    min-width: 100%;
+    padding: 0 24px;
+    top: 0;
+    left: 0;
+    transform: none;
+    border-radius: 0;
   }
 }
 
 @media(max-width:768px){
   section{padding:70px 20px;}
-  .nav {
+  .nav, .nav.on {
     top: 0;
     left: 0;
     right: 0;
@@ -250,7 +254,8 @@ section{padding:100px 40px;position:relative;}
     border-left: none;
     border-right: none;
     padding: 0 20px;
-    background: rgba(3, 7, 18, 0.9);
+    background: rgba(3, 7, 18, 0.95);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   }
   .nav-inner {
     gap: 10px;
