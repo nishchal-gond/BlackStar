@@ -195,9 +195,9 @@ const ContactForm: React.FC = () => {
           <div className="cinfo-row">
             <span>Dubai, UAE</span>
             <span className="csep">•</span>
-            <span>hello@btbacademy.com</span>
+            <span>ushanthomas21@gmail.com</span>
             <span className="csep">•</span>
-            <span>+971 XX XXX XXXX</span>
+            <span>+971 509163165</span>
           </div>
         </div>
       </div>

@@ -23,4 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+# Internal Assets
+BTB_Business_Proposal.txt
 src/components/btb.html
