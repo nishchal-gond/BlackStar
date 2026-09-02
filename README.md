@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# BTB Academy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing and investor site for **BTB Academy** — a Dubai-based trading ecosystem
+combining professional trading infrastructure, education and media production.
 
-Currently, two official plugins are available:
+Single-page site with animated data visualisations covering the revenue model,
+operating metrics, campus layout and growth roadmap.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+| Layer | Used |
+| --- | --- |
+| Framework | React 19, TypeScript, Vite 8 |
+| Animation | Framer Motion |
+| Charts | Recharts |
+| Icons | Lucide |
+| Styling | Plain CSS, per-component |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+No CSS framework and no UI library — every component owns its styling.
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Runs at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Command | Does |
+| --- | --- |
+| `npm run dev` | Development server with hot reload |
+| `npm run build` | Type-check (`tsc -b`) then production build |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | ESLint across the project |
+
+Note that `build` runs `tsc -b` first, so a type error fails the build rather than
+shipping.
+
+## Sections
+
+The page is composed in `src/App.tsx` in display order:
+
+| Component | Shows |
+| --- | --- |
+| `Hero` | Headline, positioning, headline KPIs |
+| `KPIDashboard` | Year-one operating metrics |
+| `RevenuePyramid` | Revenue model by tier |
+| `Charts` / `StackedBars` | Revenue and growth breakdowns |
+| `TechStack` | Platforms and tooling |
+| `CampusMap` | Physical campus layout |
+| `EcosystemCards` | The six departments — education, trader rooms, marketing, sales, media, community |
+| `GrowthTimeline` | Historical trajectory |
+| `VisionTimeline` | Forward roadmap |
+| `ContactForm` | Enquiry capture |
+
+`Background` and `Ticker` render behind the hero. `App.tsx` also drives a custom
+cursor (a dot tracking the pointer and a ring easing toward it via
+`requestAnimationFrame`), which is why the page hides its own cursor.
+
+## Layout
+
 ```
+src/
+├── App.tsx           Section composition, custom cursor, load transition
+├── main.tsx          Entry point
+├── index.css         Global styles and design tokens
+├── App.css           Layout and cursor styles
+├── components/       One folder per section, .tsx plus optional .css
+└── assets/           Images
+public/               favicon.svg, icons.svg
+```
+
+## Notes
+
+Content is currently hard-coded inside the components rather than loaded from a
+data file. Editing figures — revenue, student counts, timeline entries — means
+opening the relevant component.
